@@ -30,4 +30,4 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "algo-moive-backed"
-          heroku_email: "aleroliu@foxmail.com"
+          heroku_email: "aleriliu@foxmail.com"
