@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.math.BigInteger;
 
 @Entity
-public class Hello {
+public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
@@ -29,10 +29,10 @@ public class Hello {
         this.companyName = companyName;
     }
 
-    public Hello() {
+    public Company() {
     }
 
-    public Hello(BigInteger id, String companyName) {
+    public Company(BigInteger id, String companyName) {
         this.id = id;
         this.companyName = companyName;
     }
