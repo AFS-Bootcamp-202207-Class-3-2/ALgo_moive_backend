@@ -4,20 +4,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.math.BigInteger;
+
 
 @Entity
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Integer id;
     private String companyName;
 
-    public BigInteger getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -32,7 +32,7 @@ public class Company {
     public Company() {
     }
 
-    public Company(BigInteger id, String companyName) {
+    public Company(Integer id, String companyName) {
         this.id = id;
         this.companyName = companyName;
     }
