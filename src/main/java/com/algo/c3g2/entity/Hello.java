@@ -11,5 +11,29 @@ public class Hello {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
-    private String company_name;
+    private String companyName;
+
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public Hello() {
+    }
+
+    public Hello(BigInteger id, String companyName) {
+        this.id = id;
+        this.companyName = companyName;
+    }
 }
