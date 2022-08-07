@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -30,5 +32,9 @@ public class MovieService {
 
     public Movie getMovieDetail(String id) {
         return movieRepository.findById(id).orElseThrow(MovieExistException::new);
+    }
+
+    public List<Movie> getMoviesByCinemaId(String cinemaId) {
+        return movieRepository.findMoviesByCinemaId(cinemaId);
     }
 }
