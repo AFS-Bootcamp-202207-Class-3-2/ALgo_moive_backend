@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cinemas")
 public class CinemaController {
@@ -21,4 +23,9 @@ public class CinemaController {
         return Response.SUCCESS().data("cinemas", cinemas);
     }
 
+    @GetMapping("/{movieId}/movies")
+    public Response getCinemasByMovieId(@PathVariable("movieId")String movieId){
+        List<Cinema> cinemas = cinemaService.getCinemasByMovieId(movieId);
+        return Response.SUCCESS().data("cinemas", cinemas);
+    }
 }

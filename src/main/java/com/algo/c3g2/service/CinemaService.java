@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CinemaService {
     @Autowired
@@ -25,5 +27,9 @@ public class CinemaService {
             cinemas = cinemaRepository.findAll(pageable);
         }
         return cinemas;
+    }
+
+    public List<Cinema> getCinemasByMovieId(String movieId) {
+        return cinemaRepository.findCinemasByMovieId(movieId);
     }
 }
