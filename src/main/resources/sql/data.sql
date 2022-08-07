@@ -1,9 +1,9 @@
 insert into user (
 id,
-user_name,
-nick_name,
+username,
+nickname,
 password,
-r_id,avatar,
+role_id,avatar,
 phone,sign,
 status,
 create_time,

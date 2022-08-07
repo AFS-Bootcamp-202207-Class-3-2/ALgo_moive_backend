@@ -1,9 +1,9 @@
 CREATE TABLE IF not EXISTS user (
     id varchar(30) NOT NULL COMMENT 'ID',
-    user_name varchar(32) NOT NULL COMMENT '用户名',
-    nick_name varchar(32) NOT NULL COMMENT '用户昵称',
+    username varchar(32) NOT NULL COMMENT '用户名',
+    nickname varchar(32) NOT NULL COMMENT '用户昵称',
     password varchar(60) NOT NULL COMMENT '密码',
-    r_id varchar(100) DEFAULT '3' COMMENT '角色',
+    role_id varchar(100) DEFAULT '3' COMMENT '角色',
     avatar varchar(255) NOT NULL COMMENT '头像地址',
     phone varchar(100) DEFAULT '' COMMENT '邮箱地址',
     sign varchar(100) DEFAULT '' COMMENT '签名',
