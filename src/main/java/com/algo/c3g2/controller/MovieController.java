@@ -1,7 +1,6 @@
 package com.algo.c3g2.controller;
 
 import com.algo.c3g2.common.Response;
-import com.algo.c3g2.controller.dto.MovieSearchRequest;
 import com.algo.c3g2.controller.mapper.MovieMapper;
 import com.algo.c3g2.entity.Movie;
 import com.algo.c3g2.service.MovieService;
@@ -21,8 +20,11 @@ public class MovieController {
     private MovieMapper movieMapper;
 
     @GetMapping
-    public Response getMovies(@RequestBody MovieSearchRequest movieSearchRequest){
-        Page<Movie> movies = movieService.getMovies(movieSearchRequest);
+    public Response getMovies(@RequestParam(name = "page", defaultValue = "0") Integer page,
+                              @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
+                              @RequestParam(name = "sortType", defaultValue = "releaseDate") String sortType,
+                              @RequestParam(name = "search", required = false) String search){
+        Page<Movie> movies = movieService.getMovies(page, pageSize, sortType, search);
         return Response.SUCCESS().data("movies",movies);
     }
 
