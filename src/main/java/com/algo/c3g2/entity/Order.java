@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_order")
+@Accessors(chain = true)
 public class Order {
     @Id
     @GeneratedValue(generator = "snowflake")
