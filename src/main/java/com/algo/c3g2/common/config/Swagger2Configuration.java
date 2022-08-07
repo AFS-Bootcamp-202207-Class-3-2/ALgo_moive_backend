@@ -1,4 +1,4 @@
-package com.algo.c3g2.config;
+package com.algo.c3g2.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
