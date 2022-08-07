@@ -25,4 +25,10 @@ public class MovieController {
         Page<Movie> movies = movieService.getMovies(movieSearchRequest);
         return Response.SUCCESS().data("movies",movies);
     }
+
+    @GetMapping("/{id}")
+    public Response getMovieDetail(@PathVariable("id")String id){
+        Movie movies = movieService.getMovieDetail(id);
+        return Response.SUCCESS().data("movies",movies);
+    }
 }

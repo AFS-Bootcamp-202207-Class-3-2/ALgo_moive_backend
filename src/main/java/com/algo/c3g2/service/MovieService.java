@@ -2,6 +2,7 @@ package com.algo.c3g2.service;
 
 import com.algo.c3g2.controller.dto.MovieSearchRequest;
 import com.algo.c3g2.entity.Movie;
+import com.algo.c3g2.exception.MovieExistException;
 import com.algo.c3g2.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,5 +28,9 @@ public class MovieService {
             movies = movieRepository.findAll(pageable);
         }
         return movies;
+    }
+
+    public Movie getMovieDetail(String id) {
+        return movieRepository.findById(id).orElseThrow(MovieExistException::new);
     }
 }
