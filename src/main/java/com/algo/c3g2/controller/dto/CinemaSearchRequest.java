@@ -9,10 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieSearchRequest {
+public class CinemaSearchRequest {
 
     private Integer page = 0;
     private Integer pageSize = 10;
-    private String sortType = "releaseDate";
     private String search;
 }
