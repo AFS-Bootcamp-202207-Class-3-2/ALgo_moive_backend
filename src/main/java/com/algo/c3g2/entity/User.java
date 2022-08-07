@@ -1,5 +1,6 @@
 package com.algo.c3g2.entity;
 
+import com.algo.c3g2.constants.DefaultConstants;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,11 +27,11 @@ public class User {
     private String username;
     private String password;
     private String nickname;
-    private String avatar;
+    private String avatar = DefaultConstants.DEFAULT_AVATAR;
     private String sign;
     private String phone;
-    private String status;
-    private String role_id ;
+    private String status= DefaultConstants.DEFAULT_STATUS;
+    private String role_id = DefaultConstants.DEFAULT_ROLE_ID;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "create_time")
     @CreatedDate
