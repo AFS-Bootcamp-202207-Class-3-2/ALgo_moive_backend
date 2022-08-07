@@ -9,10 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -20,6 +17,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "t_user")
 public class User {
     @Id
     @GeneratedValue(generator = "snowflake")
@@ -29,9 +27,10 @@ public class User {
     private String password;
     private String nickname;
     private String avatar;
+    private String sign;
     private String phone;
-    private Boolean status = true;
-    private Integer role_id = 2;
+    private String status;
+    private String role_id ;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "create_time")
     @CreatedDate

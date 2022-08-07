@@ -6,9 +6,9 @@ spring:
   #    active: dev
   datasource:
     #    url: jdbc:h2:mem:test;MODE=PostgreSQL
-    url: jdbc:mysql://localhost:3306/algo?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/algo?useUnicode=true&characterEncoding=utf8&serverTimeZone=Asia/Shanghai&useSSL=false
     username: root
-    password: 123456
+    password: root
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
@@ -18,6 +18,11 @@ spring:
     hibernate:
       ddl-auto: update # disable DB schema creation from entity
 
+
   flyway:
     enabled: false
     baseline-on-migrate: true
+#  sql:
+#    init:
+#      schema-locations: sql/schema.sql
+#      data-locations: sql/data.sql
