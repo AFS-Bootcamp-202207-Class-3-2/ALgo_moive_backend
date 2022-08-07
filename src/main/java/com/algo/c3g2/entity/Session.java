@@ -36,13 +36,13 @@ public class Session {
 
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "start_time")
-    private Date startTime;
+    private LocalDateTime startTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "end_time")
-    private Date endTime;
+    private LocalDateTime endTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone="GMT+8")
     @Column(name = "screening_date")
-    private Date screeningDate;
+    private LocalDateTime screeningDate;
 
     private double price;
 
