@@ -1,4 +1,4 @@
-CREATE TABLE IF not EXISTS user (
+CREATE TABLE IF not EXISTS t_user (
     id varchar(30) NOT NULL COMMENT 'ID',
     username varchar(32) NOT NULL COMMENT '用户名',
     nickname varchar(32) NOT NULL COMMENT '用户昵称',
@@ -13,14 +13,14 @@ CREATE TABLE IF not EXISTS user (
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE IF not EXISTS role (
+CREATE TABLE IF not EXISTS t_role (
     id varchar(30) NOT NULL COMMENT 'ID',
     role_name varchar(32) NOT NULL COMMENT '角色名称',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
-CREATE TABLE IF not EXISTS `order` (
+CREATE TABLE IF not EXISTS t_order (
     id varchar(30) NOT NULL COMMENT 'ID',
     price double NOT NULL COMMENT '价钱',
     status varchar(10) DEFAULT '0' COMMENT '支付状态：0表示未支付，1表示已支付',
@@ -35,7 +35,7 @@ CREATE TABLE IF not EXISTS `order` (
 
 
 
-create table if not exists `session`(
+create table if not exists t_session(
     id              varchar(255) primary key comment '场次ID',
     room_id         varchar(255) not null comment '电影房间ID',
     movie_id        varchar(255) not null comment '电影ID',
@@ -46,20 +46,20 @@ create table if not exists `session`(
     price           double not null  comment '场次价格'
 );
 
-create table if not exists room(
+create table if not exists t_room(
    id               varchar(255) primary key comment '观影厅ID',
    room_name        varchar(255) not null comment '观影厅名',
    seats_layout     varchar(255) not null comment '观影厅座位',
    cinema_id        varchar(255) not null comment '电影院ID'
 );
 
-create table if not exists cinema(
+create table if not exists t_cinema(
     id              varchar(255) primary key comment '电影院ID',
     cinema_name     varchar(255) not null comment '电影院名字',
     address         varchar(255) default '' comment '电影院地址'
 );
 
-create table if not exists movie(
+create table if not exists t_movie(
     id             varchar(255) primary key comment '电影ID',
     movie_name     varchar(60) not null comment '电影名',
     actors         varchar(255) default '' comment '演员介绍',
@@ -68,5 +68,6 @@ create table if not exists movie(
     score          float  default 0.0 comment '电影评分',
     cover          varchar(255) default '' comment '电影封面',
     video          varchar(255) default '' comment '电影视频',
-    duration       int null comment '持续时间'
+    duration       double null comment '持续时间',
+    duration_unit  varchar(255) null comment '持续时间单位'
 );

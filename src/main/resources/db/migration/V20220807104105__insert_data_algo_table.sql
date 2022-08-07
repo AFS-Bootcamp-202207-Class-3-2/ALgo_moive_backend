@@ -1,9 +1,9 @@
-insert into user (
+insert into t_user (
 id,
-user_name,
-nick_name,
+username,
+nickname,
 password,
-r_id,avatar,
+role_id,avatar,
 phone,sign,
 status,
 create_time,
@@ -13,7 +13,7 @@ VALUES
     ('1552837438408228864','aleri','ikun','admin','1','https://czy-blog-system.oss-cn-shenzhen.aliyuncs.com/2020/11/01/374.gif','18575986786','用户签名','1','2022-07-29 10:04:30.298000','2022-07-29 10:04:30.298000'),
     ('1552837438408228863','czy','ikun','user','1','https://czy-blog-system.oss-cn-shenzhen.aliyuncs.com/2020/11/01/374.gif','18575986786','用户签名','1','2022-07-29 10:04:30.298000','2022-07-29 10:04:30.298000');
 
-insert into role(
+insert into t_role(
 id,
 role_name
 ) values
@@ -21,7 +21,7 @@ role_name
 ('2','business'),
 ('3','user');
 
-insert into `order`(
+insert into t_order(
 id,
 price,
 status,
@@ -42,9 +42,9 @@ seat_info
 'ALGOROOM1',
 '1552837438408228864',
 '1,2'
-)
+);
 
-INSERT INTO `session`(
+INSERT INTO t_session(
 id,
 room_id,
 movie_id,
@@ -63,7 +63,7 @@ price
 '2022-07-29',
 39.99);
 
-INSERT INTO room(
+INSERT INTO t_room(
 id,
 room_name,
 seats_layout,
@@ -75,7 +75,7 @@ cinema_id
 'ALGOCINEMA1'
 );
 
-INSERT INTO cinema(
+INSERT INTO t_cinema(
 id,
 cinema_name,
 address
@@ -85,7 +85,7 @@ address
 '位于亚洲与大洋洲，太平洋与印度洋的十字路口'
 );
 
-INSERT INTO movie(
+INSERT INTO t_movie(
 id,
 movie_name,
 actors,

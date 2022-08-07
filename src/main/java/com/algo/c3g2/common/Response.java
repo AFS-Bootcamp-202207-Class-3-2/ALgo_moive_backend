@@ -2,7 +2,6 @@ package com.algo.c3g2.common;
 
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.HashMap;
 import java.util.Map;

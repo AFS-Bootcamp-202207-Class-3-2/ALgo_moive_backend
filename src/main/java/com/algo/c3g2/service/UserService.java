@@ -18,4 +18,8 @@ public class UserService {
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
+    public User findByUserName(String username) {
+        return userRepository.findByUsername(username);
+    }
 }
