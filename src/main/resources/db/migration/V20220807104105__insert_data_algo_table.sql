@@ -1,9 +1,9 @@
 insert into t_user (
 id,
-user_name,
-nick_name,
+username,
+nickname,
 password,
-r_id,avatar,
+role_id,avatar,
 phone,sign,
 status,
 create_time,
@@ -42,7 +42,7 @@ seat_info
 'ALGOROOM1',
 '1552837438408228864',
 '1,2'
-)
+);
 
 INSERT INTO t_session(
 id,

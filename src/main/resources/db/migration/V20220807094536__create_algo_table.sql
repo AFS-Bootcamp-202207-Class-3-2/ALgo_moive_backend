@@ -27,19 +27,20 @@ create table if not exists t_movie(
     movie_name     varchar(60) not null comment '电影名',
     actors         varchar(255) default '' comment '演员介绍',
     movie_desc     varchar(500) default '' comment '电影介绍',
-    release_date   datetime null comment '持续时间',
+    release_date   datetime null comment '发布时间',
     score          float  default 0.0 comment '电影评分',
     cover          varchar(255) default '' comment '电影封面',
     video          varchar(255) default '' comment '电影视频',
-    duration       int null comment '持续时间'
+    duration       int null comment '持续时间',
+    duration_unit  varchar(255) null comment '持续时间单位'
 );
 
 CREATE TABLE IF not EXISTS t_user (
                       id varchar(30) NOT NULL COMMENT 'ID',
-                      user_name varchar(32) NOT NULL COMMENT '用户名',
-                      nick_name varchar(32) NOT NULL COMMENT '用户昵称',
+                      username varchar(32) NOT NULL COMMENT '用户名',
+                      nickname varchar(32) NOT NULL COMMENT '用户昵称',
                       password varchar(60) NOT NULL COMMENT '密码',
-                      r_id varchar(100) DEFAULT '3' COMMENT '角色',
+                      role_id varchar(100) DEFAULT '3' COMMENT '角色',
                       avatar varchar(255) NOT NULL COMMENT '头像地址',
                       phone varchar(100) DEFAULT '' COMMENT '邮箱地址',
                       sign varchar(100) DEFAULT '' COMMENT '签名',
@@ -47,13 +48,13 @@ CREATE TABLE IF not EXISTS t_user (
                       create_time datetime NULL COMMENT '创建时间',
                       update_time datetime NULL COMMENT '更新时间',
                       PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 CREATE TABLE IF not EXISTS t_role (
                       id varchar(30) NOT NULL COMMENT 'ID',
                       role_name varchar(32) NOT NULL COMMENT '角色名称',
                       PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 
 CREATE TABLE IF not EXISTS t_order (
@@ -67,4 +68,4 @@ CREATE TABLE IF not EXISTS t_order (
                          user_id varchar(100) DEFAULT '-1' COMMENT '角色ID',
                          seat_info varchar(100) DEFAULT '-1' COMMENT '座位信息',
                          PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
