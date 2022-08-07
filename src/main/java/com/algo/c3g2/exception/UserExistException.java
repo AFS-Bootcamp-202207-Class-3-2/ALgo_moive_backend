@@ -1,10 +1,10 @@
 package com.algo.c3g2.exception;
 
-import com.algo.c3g2.constants.ExceptionConstants;
+import com.algo.c3g2.constants.constants;
 
 
 public class UserExistException extends RuntimeException{
     public UserExistException() {
-        super(ExceptionConstants.USER_EXIST);
+        super(constants.USER_EXIST);
     }
 }
