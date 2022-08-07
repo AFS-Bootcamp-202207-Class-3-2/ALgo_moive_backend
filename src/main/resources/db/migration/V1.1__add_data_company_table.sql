@@ -1,1 +1,0 @@
-INSERT INTO company (id,company_name) VALUES (1,'test');
