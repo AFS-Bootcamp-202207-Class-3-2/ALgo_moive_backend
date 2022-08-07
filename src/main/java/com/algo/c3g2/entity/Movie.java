@@ -1,6 +1,7 @@
 package com.algo.c3g2.entity;
 
 
+import com.algo.c3g2.constants.DefaultConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,5 +42,5 @@ public class Movie {
 
     private double duration;
 
-    private String durationUnit;
+    private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
 }

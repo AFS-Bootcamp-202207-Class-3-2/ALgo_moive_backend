@@ -4,4 +4,5 @@ public class DefaultConstants {
     public final static String DEFAULT_AVATAR = "https://czy-blog-system.oss-cn-shenzhen.aliyuncs.com/2020/11/01/374.gif";
     public final static String DEFAULT_ROLE_ID = "3";
     public final static String DEFAULT_STATUS = "1";
+    public final static String DEFAULT_DURATION_UNIT = "day";
 }

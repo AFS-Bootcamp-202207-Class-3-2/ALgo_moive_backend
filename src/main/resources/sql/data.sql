@@ -17,7 +17,7 @@ insert into t_role(
 id,
 role_name
 ) values
-('1','admin')
+('1','admin'),
 ('2','business'),
 ('3','user');
 
