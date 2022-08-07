@@ -25,6 +25,14 @@ public class Response {
         return response;
     }
 
+    public static Response FAIL(String code, String msg) {
+        Response response = new Response();
+        response.setCode(code);
+        response.setMsg(msg);
+        return response;
+    }
+
+
     public static Response FAIL(String msg) {
         Response response = new Response();
         response.setCode("400");

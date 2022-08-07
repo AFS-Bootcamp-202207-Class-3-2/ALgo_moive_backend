@@ -33,6 +33,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowCredentials(true)
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedOrigins("*");
+                .allowedOrigins("http://localhost:3000");
     }
 }
