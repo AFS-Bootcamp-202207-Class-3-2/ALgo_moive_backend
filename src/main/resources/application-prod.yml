@@ -2,8 +2,11 @@ spring:
   profiles:
     active: production
   datasource:
+    driver-class-name: org.postgresql.Driver
     # don't modify it if you don't know what you are doing
-    url: ${JDBC_DATABASE_URL:}
+    url: jdbc:postgres://afojmgqubdhutl:5adbe25536724d54e39ab6850a607d5df0b044be055f0b55a499927b70488ba0@ec2-44-205-112-253.compute-1.amazonaws.com:5432/d540mb3c6pfrqg
+    username: afojmgqubdhutl
+    password: 5adbe25536724d54e39ab6850a607d5df0b044be055f0b55a499927b70488ba0
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
