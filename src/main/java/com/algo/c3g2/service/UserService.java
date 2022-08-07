@@ -1,6 +1,5 @@
 package com.algo.c3g2.service;
 
-import ch.qos.logback.core.net.SMTPAppenderBase;
 import com.algo.c3g2.entity.User;
 import com.algo.c3g2.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

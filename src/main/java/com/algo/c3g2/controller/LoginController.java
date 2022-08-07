@@ -1,7 +1,6 @@
 package com.algo.c3g2.controller;
 
 import cn.hutool.http.HttpStatus;
-import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.dto.UserRequest;
 import com.algo.c3g2.controller.mapper.UserMapper;
 import com.algo.c3g2.entity.User;
