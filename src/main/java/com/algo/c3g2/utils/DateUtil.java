@@ -29,7 +29,7 @@ public class DateUtil {
     }
     public static Date localDateTimeToDate(final LocalDateTime localDateTime){
         return Date.from( localDateTime.atZone( ZoneId.systemDefault()).toInstant());
-    }
+    }  
 
     /**
      * localDateToString
