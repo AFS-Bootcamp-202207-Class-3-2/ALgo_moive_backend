@@ -92,15 +92,15 @@ hot_spot,
 duration,
 duration_unit
 ) VALUES
-('ALGOMOVIE1','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE10','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE2','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE3','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE4','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE5','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE6','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE7','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE8','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0),
-('ALGOMOVIE9','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,NULL,0);
+('ALGOMOVIE1','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE10','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE2','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE3','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE4','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE5','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE6','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE7','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE8','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0),
+('ALGOMOVIE9','ALGO','第二组全部成员','梦想始于剧本，而终结于电影。','2022-07-29 08:04:30',5,'https://p0.pipi.cn/mmdb/25bfd6d72c992367cb537c020675f703a7045.jpg?imageView2/1/w/160/h/220','',10,2.5,0);
 
 
