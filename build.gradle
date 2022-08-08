@@ -41,7 +41,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //    runtimeOnly 'mysql:mysql-connector-java:8.0.13'
-    implementation 'org.flywaydb:flyway-mysql'
+//    implementation 'org.flywaydb:flyway-mysql'
     runtimeOnly 'org.postgresql:postgresql'
     
     implementation 'org.flywaydb:flyway-core'
