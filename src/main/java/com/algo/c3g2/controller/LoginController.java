@@ -28,7 +28,7 @@ public class LoginController {
         User user = userService.findByUserName(userRequest.getUsername());
         if (userRequest.getPassword().equals(user.getPassword()))
         {
-            return Response.SUCCESS().data("user",user);
+            return Response.SUCCESS(HttpStatus.HTTP_CREATED+"","登录成功！").data("user",user);
         }
         throw(new WrongPasswordException());
 
