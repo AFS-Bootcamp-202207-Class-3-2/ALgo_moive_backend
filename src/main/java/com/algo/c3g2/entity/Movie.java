@@ -34,11 +34,13 @@ public class Movie {
 
     private Date releaseDate;
 
-    private double Score;
+    private double score;
 
     private String cover;
 
     private String video;
+
+    private int hotSpot;
 
     private double duration;
 
