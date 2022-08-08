@@ -2,10 +2,7 @@ package com.algo.c3g2.advice;
 
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.constants.ExceptionConstants;
-import com.algo.c3g2.exception.MovieExistException;
-import com.algo.c3g2.exception.UserExistException;
-import com.algo.c3g2.exception.UserNotExistException;
-import com.algo.c3g2.exception.WrongPasswordException;
+import com.algo.c3g2.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -42,5 +39,19 @@ public class GlobalControllerAdvice {
     public Response handleMovieNotExistException(Exception exception) {
         log.error("-------------电影不存在----------");
         return Response.FAIL(HttpStatus.FORBIDDEN.toString(), ExceptionConstants.MOVIE_NOT_EXIST);
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(NotTokenException.class)
+    public Response handleNotTokenException(Exception exception) {
+        log.error("-------------无token，请重新登录----------");
+        return Response.FAIL("501", ExceptionConstants.NOT_TOKEN);
+    }
+
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(TokenInvalidException.class)
+    public Response handleTokenInvalidException(Exception exception) {
+        log.error("-------------token无效，请重新登录----------");
+        return Response.FAIL("501", ExceptionConstants.TOKEN_INVALID);
     }
 }

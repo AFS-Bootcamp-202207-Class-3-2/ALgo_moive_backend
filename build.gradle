@@ -40,10 +40,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-//    runtimeOnly 'mysql:mysql-connector-java:8.0.13'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.13'
     implementation 'org.flywaydb:flyway-mysql'
-    runtimeOnly 'org.postgresql:postgresql'
-    
+//    runtimeOnly 'org.postgresql:postgresql'
+    implementation 'com.auth0:java-jwt:3.10.3'
     implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'com.h2database:h2'
 }

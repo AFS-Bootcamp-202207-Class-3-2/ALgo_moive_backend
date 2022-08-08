@@ -40,4 +40,7 @@ public class User {
     @Column(name = "update_time")
     @LastModifiedDate
     private LocalDate updateTime;
+
+    @Transient
+    private String token;
 }
