@@ -11,4 +11,6 @@ import java.util.List;
 public interface SessionRepository extends JpaRepository<Session, String> {
     List<Session> findAllByMovieId(String movieId);
     List<Session> findAllByMovieIdAndRoomIdIn(String movieId, List<String> roomIds);
+
+    List<Session> findAllByRoomIdIn(List<String> roomIds);
 }

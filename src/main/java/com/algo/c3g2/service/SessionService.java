@@ -29,4 +29,12 @@ public class SessionService {
                 .collect(Collectors.toList());
         return sessionRepository.findAllByMovieIdAndRoomIdIn(movieId, roomIds);
     }
+
+    public List<Session> findSessionListByCinemaId(String cinemaId) {
+        List<Room> roomList = roomRepository.findAllByCinemaId(cinemaId);
+        List<String> roomIds = roomList.stream()
+                .map(Room::getId)
+                .collect(Collectors.toList());
+        return sessionRepository.findAllByRoomIdIn(roomIds);
+    }
 }

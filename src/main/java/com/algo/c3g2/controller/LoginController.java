@@ -21,14 +21,14 @@ public class LoginController {
     UserMapper userMapper;
 
     @GetMapping()
-    public int login(@RequestBody UserRequest userRequest) {
+    public Response login(@RequestBody UserRequest userRequest) {
         if (!isExistUser(userRequest.getUsername())) {
             throw(new UserNotExistException());
         }
         User user = userService.findByUserName(userRequest.getUsername());
         if (userRequest.getPassword().equals(user.getPassword()))
         {
-            return HttpStatus.HTTP_OK;
+            return Response.SUCCESS().data("user",user);
         }
         throw(new WrongPasswordException());
 

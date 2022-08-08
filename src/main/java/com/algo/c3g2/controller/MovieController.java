@@ -41,4 +41,7 @@ public class MovieController {
         List<Movie> movies = movieService.getMoviesByCinemaId(cinemaId);
         return Response.SUCCESS().data("movies",movies);
     }
+
+
+
 }
