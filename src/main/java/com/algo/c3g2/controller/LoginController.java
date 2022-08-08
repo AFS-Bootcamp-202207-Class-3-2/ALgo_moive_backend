@@ -20,7 +20,7 @@ public class LoginController {
     @Autowired
     UserMapper userMapper;
 
-    @GetMapping()
+    @PostMapping()
     public Response login(@RequestBody UserRequest userRequest) {
         if (!isExistUser(userRequest.getUsername())) {
             throw(new UserNotExistException());
