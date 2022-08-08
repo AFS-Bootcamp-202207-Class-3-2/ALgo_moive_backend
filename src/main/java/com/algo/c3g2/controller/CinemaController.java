@@ -28,6 +28,12 @@ public class CinemaController {
         return Response.SUCCESS().data("cinemas", cinemas);
     }
 
+    @GetMapping
+    public Response getCinemas(){
+        List<Cinema> cinemas = cinemaService.findAll();
+        return Response.SUCCESS().data("cinemas",cinemas);
+    }
+
     @GetMapping("/{movieId}/movies")
     public Response getCinemasByMovieId(@PathVariable("movieId")String movieId){
         List<Cinema> cinemas = cinemaService.getCinemasByMovieId(movieId);
