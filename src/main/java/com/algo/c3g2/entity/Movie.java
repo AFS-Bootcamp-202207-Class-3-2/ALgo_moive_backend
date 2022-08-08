@@ -45,5 +45,7 @@ public class Movie {
 
     private double duration;
 
+    private String movieType;
+
     private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
 }

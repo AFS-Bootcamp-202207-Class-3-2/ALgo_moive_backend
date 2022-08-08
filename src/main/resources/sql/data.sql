@@ -95,6 +95,7 @@ score,
 cover,
 video,
 hot_spot,
+movie_type,
 duration,
 duration_unit
 ) VALUES (
@@ -107,6 +108,7 @@ duration_unit
 '',
 '',
 10,
+'喜剧,科幻',
 2,
 'minute'
 );
