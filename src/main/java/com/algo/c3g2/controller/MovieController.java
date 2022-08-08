@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +43,16 @@ public class MovieController {
         return Response.SUCCESS().data("movies",movies);
     }
 
-
+    @GetMapping("/carousel")
+    public Response getCarousel(){
+        List<String> carousel = new ArrayList<String>(){{
+            add("https://p0.pipi.cn/friday/531b7d1311fcb84b463e313bd92fc843.jpg?imageMogr2/thumbnail/2500x2500%3E");
+            add("https://p0.pipi.cn/friday/5f2b6ade1978d976b8351f35a1409eac.jpg?imageMogr2/thumbnail/2500x2500%3E");
+            add("https://p0.pipi.cn/friday/8f8a1458698cb629fe91a28f699e4da3.jpg?imageMogr2/thumbnail/2500x2500%3E");
+            add("https://p0.pipi.cn/friday/70d508a1154316ca854d4b29ea3558b3.jpg?imageMogr2/thumbnail/2500x2500%3E");
+            add("https://p0.pipi.cn/friday/5550cd82bbc9c4705c86b3f776682635.jpg?imageMogr2/thumbnail/2500x2500%3E");
+        }};
+        return Response.SUCCESS().data("carousel",carousel);
+    }
 
 }
