@@ -42,7 +42,7 @@ seat_info
 'ALGOROOM1',
 '1552837438408228864',
 '1,2'
-)
+);
 
 INSERT INTO t_session(
 id,
@@ -71,7 +71,7 @@ cinema_id
 ) VALUES (
 'ALGOROOM1',
 '巨幕厅',
-'0,1,1,1,1,1,1,1,1,1,1,1,0,0',
+'1111111111111111111111111111111111111111101101111',
 'ALGOCINEMA1'
 );
 
@@ -94,7 +94,9 @@ release_date,
 score,
 cover,
 video,
-duration
+hot_spot,
+duration,
+duration_unit
 ) VALUES (
 'ALGOMOVIE1',
 'ALGO',
@@ -104,5 +106,7 @@ duration
 5.0,
 '',
 '',
-10
+10,
+2,
+'minute'
 );

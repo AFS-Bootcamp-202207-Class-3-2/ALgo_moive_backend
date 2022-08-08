@@ -19,15 +19,15 @@ public class LoginController {
     @Autowired
     UserMapper userMapper;
 
-    @GetMapping()
-    public int login(@RequestBody UserRequest userRequest) {
+    @PostMapping()
+    public Response login(@RequestBody UserRequest userRequest) {
         if (!isExistUser(userRequest.getUsername())) {
             throw(new UserNotExistException());
         }
         User user = userService.findByUserName(userRequest.getUsername());
         if (userRequest.getPassword().equals(user.getPassword()))
         {
-            return HttpStatus.HTTP_OK;
+            return Response.SUCCESS(HttpStatus.HTTP_CREATED+"","登录成功！").data("user",user);
         }
         throw(new WrongPasswordException());
 

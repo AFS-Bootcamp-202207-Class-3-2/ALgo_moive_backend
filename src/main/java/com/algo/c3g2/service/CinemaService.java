@@ -32,4 +32,12 @@ public class CinemaService {
     public List<Cinema> getCinemasByMovieId(String movieId) {
         return cinemaRepository.findCinemasByMovieId(movieId);
     }
+
+    public Cinema findCinemaByCinemaId(String cinemaId) {
+        return cinemaRepository.findById(cinemaId).orElseThrow(null);
+    }
+
+    public List<Cinema> findAll() {
+        return cinemaRepository.findAll();
+    }
 }
