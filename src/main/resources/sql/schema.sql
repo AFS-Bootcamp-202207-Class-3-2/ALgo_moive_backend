@@ -68,6 +68,8 @@ create table if not exists t_movie(
     score          float  default 0.0 comment '电影评分',
     cover          varchar(255) default '' comment '电影封面',
     video          varchar(255) default '' comment '电影视频',
+    hot_spot       int default 0 comment '热点',
+    movie_type     varchar(255) null comment '电影类型',
     duration       double null comment '持续时间',
-    duration_unit  varchar(255) null comment '持续时间单位'
+    duration_unit  varchar(255) default 'minute' comment '持续时间单位'
 );

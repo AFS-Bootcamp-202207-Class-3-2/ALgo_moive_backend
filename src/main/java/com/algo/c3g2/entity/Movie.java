@@ -2,6 +2,7 @@ package com.algo.c3g2.entity;
 
 
 import com.algo.c3g2.constants.DefaultConstants;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,16 +32,20 @@ public class Movie {
     private String actors;
 
     private String movieDesc;
-
+    @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     private Date releaseDate;
 
-    private double Score;
+    private double score;
 
     private String cover;
 
     private String video;
 
+    private int hotSpot;
+
     private double duration;
+
+    private String movieType;
 
     private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
 }
