@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller;
 
+import cn.hutool.http.HttpStatus;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.dto.UserRequest;
 import com.algo.c3g2.controller.mapper.UserMapper;
@@ -31,7 +32,7 @@ public class UserController {
         user.setNickname(user.getUsername());
         try {
             User saveUser = userService.saveUser(user);
-            return Response.SUCCESS().data("data", saveUser);
+            return Response.SUCCESS(HttpStatus.HTTP_CREATED+"","注册成功！").data("data", saveUser);
         } catch (Exception exception) {
             return Response.FAIL(exception.getMessage());
         }

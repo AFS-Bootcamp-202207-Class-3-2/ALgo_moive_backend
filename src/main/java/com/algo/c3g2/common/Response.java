@@ -49,4 +49,11 @@ public class Response {
         this.data.put(msg, data);
         return this;
     }
+
+    public static Response SUCCESS(String code,String msg) {
+        Response response = new Response();
+        response.setCode(code);
+        response.setMsg(msg);
+        return response;
+    }
 }
