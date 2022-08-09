@@ -46,7 +46,13 @@ public class OrderService {
         Room room = roomRepository.findById(orderFromDb.getRoomId()).get();
         User user = userRepository.findById(orderFromDb.getUserId()).get();
 
-        OrderResponse orderResponse = new OrderResponse()
+        String seatInfo="";
+        String[] seatInfoData = orderFromDb.getSeatInfo().split("\\,");
+        if (seatInfoData.length >= 2) {
+            seatInfo = String.format("第%s排 第%s列",seatInfoData[0],seatInfoData[1]);
+        }
+
+        OrderResponse orderResponse = new OrderResponse().setSeatInfo(seatInfo)
                 .setOrderId(orderId).setPrice(orderFromDb.getPrice()).setStatus(orderFromDb.getStatus())
                 .setStartTime(session.getStartTime()).setEndTime(session.getEndTime()).setScreeningDate(session.getScreeningDate())
                 .setMovieName(movie.getMovieName()).setMovieActors(movie.getActors()).setMovieDesc(movie.getMovieDesc()).setMovieReleaseDate(movie.getReleaseDate())

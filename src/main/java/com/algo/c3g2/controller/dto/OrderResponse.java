@@ -49,4 +49,6 @@ public class OrderResponse {
 
     private String userPhone;
 
+    private String seatInfo;
+
 }
