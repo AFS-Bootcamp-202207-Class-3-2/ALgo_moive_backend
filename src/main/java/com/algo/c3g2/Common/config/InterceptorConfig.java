@@ -9,25 +9,23 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Configuration
+@Configuration
 public class InterceptorConfig implements WebMvcConfigurer {
 
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        List<String> patterns = new ArrayList<String>();
-//        patterns.add("/users/register");
-//        patterns.add("/login");
-//        patterns.add("/movies/**");
-//        patterns.add("/sessions/**");
-//        patterns.add("/cinemas/**");
-//
-//
-//        registry.addInterceptor(jwtInterceptor())
-//                .addPathPatterns("/**")
-//                .excludePathPatterns(patterns);
-//
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        List<String> patterns = new ArrayList<String>();
+        patterns.add("/users/register");
+        patterns.add("/login");
+        patterns.add("/movies");
+        patterns.add("/sessions");
+        patterns.add("/cinemas");
+
+        registry.addInterceptor(jwtInterceptor())
+                .addPathPatterns("/**")
+                .excludePathPatterns(patterns);
+
+    }
 
 
 

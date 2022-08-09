@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller;
 
+import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.dto.CinemaSearchRequest;
 import com.algo.c3g2.entity.Cinema;
@@ -23,24 +24,28 @@ public class CinemaController {
     private SessionService sessionService;
 
     @PostMapping
+    @AuthAccess
     public Response getCinemas(@RequestBody CinemaSearchRequest cinemaSearchRequest){
         Page<Cinema> cinemas = cinemaService.getCinemas(cinemaSearchRequest);
         return Response.SUCCESS().data("cinemas", cinemas);
     }
 
     @GetMapping
+    @AuthAccess
     public Response getCinemas(){
         List<Cinema> cinemas = cinemaService.findAll();
         return Response.SUCCESS().data("cinemas",cinemas);
     }
 
     @GetMapping("/{movieId}/movies")
+    @AuthAccess
     public Response getCinemasByMovieId(@PathVariable("movieId")String movieId){
         List<Cinema> cinemas = cinemaService.getCinemasByMovieId(movieId);
         return Response.SUCCESS().data("cinemas", cinemas);
     }
 
     @GetMapping("/{cinemaId}")
+    @AuthAccess
     public Response getCinemaByCinemaId(@PathVariable("cinemaId")String cinemaId){
         Cinema cinema = cinemaService.findCinemaByCinemaId(cinemaId);
         List<Session> sessions = sessionService.findSessionListByCinemaId(cinemaId);

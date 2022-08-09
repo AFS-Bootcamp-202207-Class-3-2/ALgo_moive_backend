@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller;
 
+import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.mapper.SessionMapper;
 import com.algo.c3g2.entity.Session;
@@ -19,6 +20,7 @@ public class SessionController {
     SessionMapper sessionMapper;
 
     @GetMapping("/{id}/seats")
+    @AuthAccess
     public Response getSeatsInfoBySessionId(@PathVariable("id")String id){
         Session session = sessionService.getSessionById(id);
         return Response.SUCCESS().data("seats", sessionMapper.toSessionSeats(session));
@@ -26,6 +28,7 @@ public class SessionController {
 
 
     @GetMapping("/{cinemaId}/{movieId}")
+    @AuthAccess
     public Response getSessionListByCinemaIdAndMovieId(@PathVariable("cinemaId") String cinemaId,
                                                        @PathVariable("movieId") String movieId) {
         List<Session> sessionList = sessionService.findSessionListByCinemaIdAndMovieId(cinemaId, movieId);
