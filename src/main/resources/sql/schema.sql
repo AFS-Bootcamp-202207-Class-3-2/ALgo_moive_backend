@@ -70,7 +70,7 @@ create table if not exists t_movie(
     video          varchar(255) default '' comment '电影视频',
     hot_spot       int default 0 comment '热点',
     movie_type     varchar(255) null comment '电影类型',
-    box_office      varchar(255) null comment '票房',
+    box_office     double default 0.0 comment '票房',
     duration       double null comment '持续时间',
     duration_unit  varchar(255) default 'minute' comment '持续时间单位'
 );

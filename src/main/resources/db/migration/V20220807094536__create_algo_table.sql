@@ -34,7 +34,7 @@ create table if not exists t_movie(
     video          varchar(255) default '',
     hot_spot       int default 0,
     movie_type     varchar(255) null,
-    box_office      varchar(255) null,
+    box_office     float  default 0.0,
     duration       float null ,
     duration_unit  varchar(255) null
 );
