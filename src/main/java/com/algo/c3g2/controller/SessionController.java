@@ -2,6 +2,9 @@ package com.algo.c3g2.controller;
 
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.mapper.SessionMapper;
+import com.algo.c3g2.entity.Cinema;
+import com.algo.c3g2.entity.Movie;
+import com.algo.c3g2.entity.Room;
 import com.algo.c3g2.entity.Session;
 import com.algo.c3g2.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +21,14 @@ public class SessionController {
     @Autowired
     SessionMapper sessionMapper;
 
-    @GetMapping("/{id}/seats")
-    public Response getSeatsInfoBySessionId(@PathVariable("id")String id){
+    @GetMapping("/{id}")
+    public Response getSessionInfoAndSeatsInfoBySessionId(@PathVariable("id")String id){
         Session session = sessionService.getSessionById(id);
-        return Response.SUCCESS().data("seats", sessionMapper.toSessionSeats(session));
+        Movie movie = sessionService.findMovieByMovieId(session.getMovieId());
+        Room room = sessionService.findRoomByRoomId(session.getRoomId());
+        Cinema cinema = sessionService.findCinemaByCinemaId(room.getCinemaId());
+        return Response.SUCCESS().data("sessionInfo", sessionMapper.toSessionResponse(session, movie, cinema, room));
     }
-
 
     @GetMapping("/{cinemaId}/{movieId}")
     public Response getSessionListByCinemaIdAndMovieId(@PathVariable("cinemaId") String cinemaId,
