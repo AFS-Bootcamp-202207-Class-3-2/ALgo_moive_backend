@@ -47,4 +47,6 @@ public class OrderResponse {
 
     private String userAvatar = DefaultConstants.DEFAULT_AVATAR;
 
+    private String userPhone;
+
 }

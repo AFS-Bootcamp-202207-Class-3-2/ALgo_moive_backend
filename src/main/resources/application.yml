@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: production
+    active: dev
 
 #  datasource:
 ##    url: jdbc:h2:mem:test;MODE=PostgreSQL
