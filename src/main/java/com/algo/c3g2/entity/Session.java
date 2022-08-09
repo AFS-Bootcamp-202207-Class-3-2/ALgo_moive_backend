@@ -49,6 +49,10 @@ public class Session {
 
     private double price;
 
+    @Transient
+    private String languageVersion;
+
+
     public Session(String id, String roomId, String movieId, String seatsInfo) {
         this.id = id;
         this.roomId = roomId;

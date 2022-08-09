@@ -37,6 +37,8 @@ public class SessionController {
     public Response getSessionListByCinemaIdAndMovieId(@PathVariable("cinemaId") String cinemaId,
                                                        @PathVariable("movieId") String movieId) {
         List<Session> sessionList = sessionService.findSessionListByCinemaIdAndMovieId(cinemaId, movieId);
+        Movie movie = sessionService.findMovieByMovieId(movieId);
+        sessionList.forEach(item->item.setLanguageVersion(movie.getLanguageVersion()));
         return Response.SUCCESS().data("size", sessionList.size())
                 .data("sessionList", sessionList);
     }
