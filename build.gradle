@@ -48,6 +48,8 @@ dependencies {
     implementation 'com.auth0:java-jwt:3.10.3'
     implementation 'org.flywaydb:flyway-core'
     runtimeOnly 'com.h2database:h2'
+
+    implementation 'com.google.zxing:core:3.5.0'
 }
 
 tasks.named('test') {

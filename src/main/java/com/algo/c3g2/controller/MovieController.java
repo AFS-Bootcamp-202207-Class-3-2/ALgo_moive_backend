@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller;
 
+import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.mapper.MovieMapper;
 import com.algo.c3g2.entity.Movie;
@@ -23,6 +24,7 @@ public class MovieController {
     private MovieMapper movieMapper;
 
     @GetMapping
+    @AuthAccess
     public Response getMovies(@RequestParam(name = "page", defaultValue = "0") Integer page,
                               @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize,
                               @RequestParam(name = "sortType", defaultValue = "releaseDate") String sortType,
@@ -32,18 +34,21 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
+    @AuthAccess
     public Response getMovieDetail(@PathVariable("id")String id){
         Movie movie = movieService.getMovieDetail(id);
         return Response.SUCCESS().data("movie",movie);
     }
 
     @GetMapping("/{cinemaId}/cinemas")
+    @AuthAccess
     public Response getMoviesByCinemaId(@PathVariable("cinemaId")String cinemaId){
         List<Movie> movies = movieService.getMoviesByCinemaId(cinemaId);
         return Response.SUCCESS().data("movies",movies);
     }
 
     @GetMapping("/carousel")
+    @AuthAccess
     public Response getCarousel(){
         List<String> carousel = new ArrayList<String>(){{
             add("https://p0.pipi.cn/friday/531b7d1311fcb84b463e313bd92fc843.jpg?imageMogr2/thumbnail/2500x2500%3E");
