@@ -12,4 +12,6 @@ import lombok.Setter;
 public class Seat {
     private int state;
     private int index;
+    private int row;
+    private int col;
 }

@@ -24,7 +24,7 @@ public class SessionMapper {
         int seatIndex = 0;
         for(int row = 0; row < sizeLength; row++) {
             for(int col = 0; col < sizeLength; col++) {
-                seatsList[row][col] = new Seat(seats.charAt(seatIndex) - '0', seatIndex++);
+                seatsList[row][col] = new Seat(seats.charAt(seatIndex) - '0', seatIndex++, row + 1, col + 1);
             }
         }
         return new SessionSeatsResponse(
