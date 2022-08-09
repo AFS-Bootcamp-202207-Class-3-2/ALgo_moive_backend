@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller;
 
+import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.dto.UserRequest;
 import com.algo.c3g2.controller.mapper.UserMapper;
@@ -20,6 +21,7 @@ public class UserController {
     UserMapper userMapper;
 
     @PostMapping("/register")
+    @AuthAccess
     public Response register(@RequestBody UserRequest userRequest) {
         if (isExistUser(userRequest.getUsername())) {
             throw(new UserExistException());

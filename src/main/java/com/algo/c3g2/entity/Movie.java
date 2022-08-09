@@ -47,5 +47,16 @@ public class Movie {
 
     private String movieType;
 
+    private double boxOffice;
+
+    private String languageVersion;
+
     private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
+
+    public Movie(String id, String movieName, String actors, String movieDesc) {
+        this.id = id;
+        this.movieName = movieName;
+        this.actors = actors;
+        this.movieDesc = movieDesc;
+    }
 }
