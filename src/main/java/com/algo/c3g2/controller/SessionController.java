@@ -38,6 +38,6 @@ public class SessionController {
                                                        @PathVariable("movieId") String movieId) {
         List<Session> sessionList = sessionService.findSessionListByCinemaIdAndMovieId(cinemaId, movieId);
         return Response.SUCCESS().data("size", sessionList.size())
-                .data("sessionList", sessionMapper.toResponse(sessionList));
+                .data("sessionList", sessionList);
     }
 }

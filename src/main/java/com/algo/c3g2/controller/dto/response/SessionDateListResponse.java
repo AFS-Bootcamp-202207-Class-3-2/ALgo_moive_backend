@@ -1,5 +1,6 @@
 package com.algo.c3g2.controller.dto.response;
 
+import com.algo.c3g2.entity.Session;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +15,5 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SessionDateListResponse {
-    private HashMap<String, List<SessionResponse>> sessionDateList;
+    private HashMap<String, List<Session>> sessionDateList;
 }
