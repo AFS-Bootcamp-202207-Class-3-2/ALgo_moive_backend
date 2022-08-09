@@ -9,7 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/algo?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&useSSL=false
     username: root
-    password: root
+    password: 12345
     hikari:
       connection-timeout: 30000
       maximum-pool-size: 10
@@ -20,7 +20,7 @@ spring:
       ddl-auto: none # disable DB schema creation from entity
 
   flyway:
-#    enabled: false
+    enabled: false
     baseline-on-migrate: true
 
 
