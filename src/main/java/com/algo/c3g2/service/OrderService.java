@@ -1,8 +1,9 @@
 package com.algo.c3g2.service;
 
 import com.algo.c3g2.common.Response;
-import com.algo.c3g2.controller.OrderCreateRequest;
+import com.algo.c3g2.controller.dto.OrderCreateRequest;
 import com.algo.c3g2.controller.dto.OrderResponse;
+import com.algo.c3g2.controller.dto.response.OrderCreateResponse;
 import com.algo.c3g2.controller.mapper.SeatMapper;
 import com.algo.c3g2.entity.*;
 import com.algo.c3g2.exception.OrderNoExistException;
@@ -10,6 +11,7 @@ import com.algo.c3g2.repository.*;
 import com.algo.c3g2.utils.QrCodeUtils;
 import com.algo.c3g2.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -73,6 +75,7 @@ public class OrderService {
             if(localSeats.charAt(index) == '2') {
                 return Response.FAIL("座位已被选");
             }
+            seat.setState(2);
             localSeats = localSeats.substring(0, index) + '2' + localSeats.substring(index + 1);
         }
         Movie movie = movieRepository.findById(session.getMovieId()).get();
@@ -83,7 +86,10 @@ public class OrderService {
         Order orderFromDb = orderRepository.save(order.setId(null).setStatus("0"));
         session.setSeatsInfo(localSeats);
         sessionRepository.save(session);
-        return Response.SUCCESS("生成订单信息成功！").data("data",orderFromDb);
+        OrderCreateResponse orderCreateResponse = new OrderCreateResponse();
+        BeanUtils.copyProperties(orderFromDb, orderCreateResponse);
+        orderCreateResponse.setSeats(seats);
+        return Response.SUCCESS("生成订单信息成功！").data("data", orderCreateResponse);
     }
 
     public void createQrCode(String orderId, HttpServletResponse response) {
