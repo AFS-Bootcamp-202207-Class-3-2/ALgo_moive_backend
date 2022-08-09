@@ -52,6 +52,8 @@ public class Session {
     @Transient
     private String languageVersion;
 
+    @Transient
+    private String roomName;
 
     public Session(String id, String roomId, String movieId, String seatsInfo) {
         this.id = id;
