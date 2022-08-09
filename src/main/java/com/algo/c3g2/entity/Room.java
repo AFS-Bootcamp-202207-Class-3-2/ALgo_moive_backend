@@ -28,4 +28,10 @@ public class Room {
     private String seatsLayout;
 
     private String cinemaId;
+
+    public Room(String id, String roomName, String cinemaId) {
+        this.id = id;
+        this.roomName = roomName;
+        this.cinemaId = cinemaId;
+    }
 }

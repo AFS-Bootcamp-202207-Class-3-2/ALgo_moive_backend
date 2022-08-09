@@ -43,4 +43,5 @@ public class User {
 
     @Transient
     private String token;
+
 }

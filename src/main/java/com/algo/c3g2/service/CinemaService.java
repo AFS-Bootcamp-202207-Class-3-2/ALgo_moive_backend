@@ -34,7 +34,7 @@ public class CinemaService {
     }
 
     public Cinema findCinemaByCinemaId(String cinemaId) {
-        return cinemaRepository.findById(cinemaId).orElseThrow(null);
+        return cinemaRepository.findById(cinemaId).orElse(new Cinema());
     }
 
     public List<Cinema> findAll() {

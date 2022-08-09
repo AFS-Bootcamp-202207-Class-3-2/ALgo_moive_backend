@@ -8,10 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Getter
@@ -45,6 +48,17 @@ public class Session {
     private LocalDateTime screeningDate;
 
     private double price;
+
+    public Session(String id, String roomId, String movieId, String seatsInfo) {
+        this.id = id;
+        this.roomId = roomId;
+        this.movieId = movieId;
+        this.seatsInfo = seatsInfo;
+        Date date = new Date();
+        this.startTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        this.endTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        this.screeningDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
 
     /**
      * 使用示例
