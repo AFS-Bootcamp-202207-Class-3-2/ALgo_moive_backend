@@ -2,16 +2,11 @@ package com.algo.c3g2.controller;
 
 import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
-import com.algo.c3g2.controller.dto.OrderRequest;
-import com.algo.c3g2.controller.mapper.OrderMapper;
-import com.algo.c3g2.entity.Order;
 import com.algo.c3g2.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/order")
@@ -24,9 +19,10 @@ public class OrderController {
         return orderService.generateOrderResponseById(orderId);
     }
 
-    @GetMapping("/generateOrder")
-    public Response generateOrder(@RequestBody OrderRequest orderRequest) {
-        return orderService.generateOrder(OrderMapper.toEntity(orderRequest));
+    @PostMapping("/generateOrder")
+    @AuthAccess
+    public Response generateOrder(@RequestBody OrderCreateRequest orderCreateRequest) {
+        return orderService.generateOrder(orderCreateRequest);
     }
     @AuthAccess
     @GetMapping("/query/paystate/{id}")
@@ -44,8 +40,6 @@ public class OrderController {
                                @PathVariable("orderId") String orderId) {
         orderService.createQrCode(orderId,response);
     }
-
-
 
     @AuthAccess
     @GetMapping("/test/{orderId}")

@@ -1,11 +1,14 @@
 package com.algo.c3g2.service;
 
 import com.algo.c3g2.common.Response;
+import com.algo.c3g2.controller.OrderCreateRequest;
 import com.algo.c3g2.controller.dto.OrderResponse;
+import com.algo.c3g2.controller.mapper.SeatMapper;
 import com.algo.c3g2.entity.*;
 import com.algo.c3g2.exception.OrderNoExistException;
 import com.algo.c3g2.repository.*;
 import com.algo.c3g2.utils.QrCodeUtils;
+import com.algo.c3g2.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,8 +58,31 @@ public class OrderService {
                 , orderResponse);
     }
 
-    public Response generateOrder(Order order) {
+    public Response generateOrder(OrderCreateRequest request) {
+        User user = TokenUtils.getCurrentUser();
+        String sessionId = request.getSessionId();
+        Seat[] seats = request.getSeats();
+        double price = request.getPrice();
+        Session session = sessionRepository.findById(sessionId).get();
+        String localSeats = session.getSeatsInfo();
+        for (Seat seat : seats) {
+            int index = seat.getIndex();
+            if(localSeats.charAt(index) == '0') {
+                return Response.FAIL("座位无效");
+            }
+            if(localSeats.charAt(index) == '2') {
+                return Response.FAIL("座位已被选");
+            }
+            localSeats = localSeats.substring(0, index) + '2' + localSeats.substring(index + 1);
+        }
+        Movie movie = movieRepository.findById(session.getMovieId()).get();
+        Room room = roomRepository.findById(session.getRoomId()).get();
+        Cinema cinema = cinemaRepository.findById(room.getCinemaId()).get();
+        Order order = new Order(null, price, "0", sessionId, movie.getId(), cinema.getId(), room.getId(),
+                user.getId(), new SeatMapper().toSeatInfo(seats));
         Order orderFromDb = orderRepository.save(order.setId(null).setStatus("0"));
+        session.setSeatsInfo(localSeats);
+        sessionRepository.save(session);
         return Response.SUCCESS("生成订单信息成功！").data("data",orderFromDb);
     }
 
