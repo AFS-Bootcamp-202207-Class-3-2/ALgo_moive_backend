@@ -32,15 +32,13 @@ public class CinemaController {
 
     @GetMapping
     @AuthAccess
-    public Response getCinemas(){
-        List<Cinema> cinemas = cinemaService.findAll();
-        return Response.SUCCESS().data("cinemas",cinemas);
-    }
-
-    @GetMapping("/{movieId}/movies")
-    @AuthAccess
-    public Response getCinemasByMovieId(@PathVariable("movieId")String movieId){
-        List<Cinema> cinemas = cinemaService.getCinemasByMovieId(movieId);
+    public Response getCinemas(@RequestParam(value = "movieId",required = false)String movieId){
+        List<Cinema> cinemas;
+        if(movieId !=null){
+            cinemas = cinemaService.getCinemasByMovieId(movieId);
+        }else{
+            cinemas = cinemaService.findAll();
+        }
         return Response.SUCCESS().data("cinemas", cinemas);
     }
 
