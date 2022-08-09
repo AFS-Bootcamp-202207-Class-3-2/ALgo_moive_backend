@@ -96,6 +96,7 @@ cover,
 video,
 hot_spot,
 movie_type,
+boxOffice,
 duration,
 duration_unit
 ) VALUES (
@@ -109,6 +110,7 @@ duration_unit
 '',
 10,
 '喜剧,科幻',
+'789.12万',
 2,
 'minute'
 );

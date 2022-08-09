@@ -47,6 +47,8 @@ public class Movie {
 
     private String movieType;
 
+    private String boxOffice;
+
     private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
 
     public Movie(String id, String movieName, String actors, String movieDesc) {
