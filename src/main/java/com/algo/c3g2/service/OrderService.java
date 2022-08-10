@@ -46,13 +46,18 @@ public class OrderService {
         Room room = roomRepository.findById(orderFromDb.getRoomId()).get();
         User user = userRepository.findById(orderFromDb.getUserId()).get();
 
-        String seatInfo="";
-        String[] seatInfoData = orderFromDb.getSeatInfo().split("\\,");
-        if (seatInfoData.length >= 2) {
-            seatInfo = String.format("第%s排 第%s列",seatInfoData[0],seatInfoData[1]);
+        StringBuilder seatInfoBuilder = new StringBuilder();
+        String[] seatInfoData = orderFromDb.getSeatInfo().split(" ");
+        for (int idx = 0; idx < seatInfoData.length; idx++) {
+            String[] splitSeat = seatInfoData[idx].split("\\,");
+            if (splitSeat.length >= 2) {
+                seatInfoBuilder.append(String.format("%s排%s座", splitSeat[0], splitSeat[1]));
+            }
+            if (idx == seatInfoData.length - 1) break;
+            seatInfoBuilder.append(" ");
         }
 
-        OrderResponse orderResponse = new OrderResponse().setSeatInfo(seatInfo)
+        OrderResponse orderResponse = new OrderResponse().setSeatInfo(seatInfoBuilder.toString())
                 .setOrderId(orderId).setPrice(orderFromDb.getPrice()).setStatus(orderFromDb.getStatus())
                 .setStartTime(session.getStartTime()).setEndTime(session.getEndTime()).setScreeningDate(session.getScreeningDate())
                 .setMovieName(movie.getMovieName()).setMovieActors(movie.getActors()).setMovieDesc(movie.getMovieDesc()).setMovieReleaseDate(movie.getReleaseDate())
