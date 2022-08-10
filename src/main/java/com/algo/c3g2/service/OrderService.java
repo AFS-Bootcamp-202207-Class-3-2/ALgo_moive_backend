@@ -174,6 +174,8 @@ public class OrderService {
     public Response findByUserId(String userId,int page, int  pageSize) {
         page = (page - 1) * pageSize;
         System.out.println(page+" "+pageSize);
+        int totalCount = orderRepository.countByUserId(userId);
+        System.out.println(totalCount);
         List<Order> orderList = orderRepository.findAllByUserId(userId,page,pageSize);
         System.out.println(orderList.size());
         List<OrderResponse> orderResponseList = new ArrayList<>();
@@ -192,6 +194,6 @@ public class OrderService {
             orderResponse.setEndTime(sessionRepository.findById(order.getSessionId()).get().getEndTime());
             orderResponseList.add(orderResponse);
         }
-        return Response.SUCCESS().data("orders",orderResponseList);
+        return Response.SUCCESS().data("orders",orderResponseList).data("totalCount",totalCount);
     }
 }

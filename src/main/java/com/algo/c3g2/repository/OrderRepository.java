@@ -17,6 +17,8 @@ public interface OrderRepository extends JpaRepository<Order,String> {
             value = "select id,price,status,session_id,movie_id,cinema_id,room_id,user_id,seat_info,create_time from t_order where user_id=?1 order by create_time desc limit ?2,?3")
     List<Order> findAllByUserId(String userId,int page,int pageSize);
 
+    int countByUserId(String userId);
+
 //    @Query(nativeQuery=true,
 //            value="select \n" +
 //                    "o.id,o.price,o.status,\n" +
