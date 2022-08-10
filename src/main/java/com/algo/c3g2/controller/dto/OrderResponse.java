@@ -49,4 +49,7 @@ public class OrderResponse {
 
     private String seatInfo;
 
+    @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
+    private Date createTime;
+
 }

@@ -30,7 +30,8 @@ movie_id,
 cinema_id,
 room_id,
 user_id,
-seat_info
+seat_info,
+create_time
 ) values
 (
 '1552837438408221364',
@@ -41,7 +42,8 @@ seat_info
 'ALGOCINEMA1',
 'ALGOROOM1',
 '1552837438408228864',
-'1,2'
+'1,2',
+'2022-08-10 14:46:41'
 );
 
 INSERT INTO t_session(

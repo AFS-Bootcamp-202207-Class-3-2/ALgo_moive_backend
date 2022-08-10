@@ -50,8 +50,10 @@ public class OrderController {
 
     @AuthAccess
     @GetMapping("/user/{id}")
-    public Response findOrdersByUserId(@PathVariable("id") String userId) {
-        return orderService.findByUserId(userId);
+    public Response findOrdersByUserId(@PathVariable("id") String userId,
+                                       @RequestParam(value = "page",defaultValue = "1",required = false) int page,
+                                       @RequestParam(value = "pageSize",defaultValue = "3",required = false) int pageSize) {
+        return orderService.findByUserId(userId,page,pageSize);
     }
 
 

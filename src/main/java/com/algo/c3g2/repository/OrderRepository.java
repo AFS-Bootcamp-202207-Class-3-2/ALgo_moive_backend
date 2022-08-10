@@ -11,7 +11,11 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order,String> {
-    List<Order> findAllByUserId(String userId);
+
+
+    @Query(nativeQuery = true,
+            value = "select id,price,status,session_id,movie_id,cinema_id,room_id,user_id,seat_info,create_time from t_order where user_id=?1 order by create_time desc limit ?2,?3")
+    List<Order> findAllByUserId(String userId,int page,int pageSize);
 
 //    @Query(nativeQuery=true,
 //            value="select \n" +

@@ -14,6 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -22,6 +25,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -96,7 +100,7 @@ public class OrderService {
         Room room = roomRepository.findById(session.getRoomId()).get();
         Cinema cinema = cinemaRepository.findById(room.getCinemaId()).get();
         Order order = new Order(null, price, "0", sessionId, movie.getId(), cinema.getId(), room.getId(),
-                user.getId(), new SeatMapper().toSeatInfo(seats));
+                user.getId(), new SeatMapper().toSeatInfo(seats),new Date());
         Order orderFromDb = orderRepository.save(order.setId(null).setStatus("0"));
         session.setSeatsInfo(localSeats);
         sessionRepository.save(session);
@@ -167,13 +171,16 @@ public class OrderService {
         return Response.SUCCESS().data("order", orderFromDb);
     }
 
-    public Response findByUserId(String userId) {
-        List<Order> orderList = orderRepository.findAllByUserId(userId);
+    public Response findByUserId(String userId,int page, int  pageSize) {
+        page = (page - 1) * pageSize;
+        System.out.println(page+" "+pageSize);
+        List<Order> orderList = orderRepository.findAllByUserId(userId,page,pageSize);
+        System.out.println(orderList.size());
         List<OrderResponse> orderResponseList = new ArrayList<>();
         for (Order value : orderList) {
             OrderResponse orderResponse = new OrderResponse();
             Order order = value;
-            orderResponse.setOrderId(order.getId());
+            orderResponse.setOrderId(order.getId()).setCreateTime(value.getCreateTime());
             orderResponse.setCinemaName(cinemaRepository.findById(order.getCinemaId()).get().getCinemaName());
             orderResponse.setMovieName(movieRepository.findById(order.getMovieId()).get().getMovieName());
             orderResponse.setRoomName(roomRepository.findById(order.getRoomId()).get().getRoomName());

@@ -30,6 +30,7 @@ CREATE TABLE IF not EXISTS t_order (
     room_id varchar(100) DEFAULT '-1' COMMENT '电影院ID',
     user_id varchar(100) DEFAULT '-1' COMMENT '角色ID',
     seat_info varchar(100) DEFAULT '-1' COMMENT '座位信息',
+    create_time datetime NULL COMMENT '创建时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

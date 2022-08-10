@@ -69,5 +69,6 @@ CREATE TABLE IF not EXISTS t_order (
                          cinema_id varchar(100) DEFAULT '-1',
                          room_id varchar(100) DEFAULT '-1',
                          user_id varchar(100) DEFAULT '-1',
-                         seat_info varchar(100) DEFAULT '-1'
+                         seat_info varchar(100) DEFAULT '-1',
+                         create_time timestamp NULL
 );
