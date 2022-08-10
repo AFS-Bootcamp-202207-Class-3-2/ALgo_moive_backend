@@ -27,5 +27,7 @@ public class Cinema {
     private String cinemaName;
 
     private String address;
+    private String phone;
+    private String cinema_service;
 
 }

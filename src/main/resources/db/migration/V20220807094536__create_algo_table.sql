@@ -20,7 +20,9 @@ create table if not exists t_room(
 create table if not exists t_cinema(
     id              varchar(255) primary key,
     cinema_name     varchar(255) not null ,
-    address         varchar(255) default ''
+    address         varchar(255) default '',
+    phone           varchar(255) not null ,
+    cinema_service  varchar(255) not null
 );
 
 create table if not exists t_movie(
