@@ -60,4 +60,18 @@ public class MovieController {
         return Response.SUCCESS().data("carousel",carousel);
     }
 
+    @GetMapping("/nowmovies")
+    @AuthAccess
+    public Response getNowMovies(){
+        List<Movie>movies = movieService.findNowMovies();
+        return Response.SUCCESS().data("movies",movies);
+    }
+
+    @GetMapping("/futuremovies")
+    @AuthAccess
+    public Response getFutureMovies(){
+        List<Movie>movies = movieService.findFutureMovies();
+        return Response.SUCCESS().data("movies",movies);
+    }
+
 }

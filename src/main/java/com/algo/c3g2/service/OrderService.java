@@ -170,9 +170,9 @@ public class OrderService {
     public Response findByUserId(String userId) {
         List<Order> orderList = orderRepository.findAllByUserId(userId);
         List<OrderResponse> orderResponseList = new ArrayList<>();
-        for (int i = 0; i < orderList.size(); i++) {
+        for (Order value : orderList) {
             OrderResponse orderResponse = new OrderResponse();
-            Order order = orderList.get(i);
+            Order order = value;
             orderResponse.setOrderId(order.getId());
             orderResponse.setCinemaName(cinemaRepository.findById(order.getCinemaId()).get().getCinemaName());
             orderResponse.setMovieName(movieRepository.findById(order.getMovieId()).get().getMovieName());
