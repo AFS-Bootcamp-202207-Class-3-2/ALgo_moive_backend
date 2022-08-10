@@ -40,9 +40,9 @@ public class MovieController {
         return Response.SUCCESS().data("movie",movie);
     }
 
-    @GetMapping("/{cinemaId}/cinemas")
+    @GetMapping("/inCinema")
     @AuthAccess
-    public Response getMoviesByCinemaId(@PathVariable("cinemaId")String cinemaId){
+    public Response getMoviesByCinemaId(@RequestParam("cinemaId")String cinemaId){
         List<Movie> movies = movieService.getMoviesByCinemaId(cinemaId);
         return Response.SUCCESS().data("movies",movies);
     }
