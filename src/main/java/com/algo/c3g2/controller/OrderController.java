@@ -56,5 +56,10 @@ public class OrderController {
         return orderService.findByUserId(userId,page,pageSize);
     }
 
+    @DeleteMapping("/user/d/{orderId}")
+    public Response deleteOrdersFromUserById(@PathVariable("orderId") String orderId) {
+        return orderService.deleteOrdersFromUserById(orderId);
+    }
+
 
 }

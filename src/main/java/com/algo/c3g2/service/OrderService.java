@@ -196,4 +196,9 @@ public class OrderService {
         }
         return Response.SUCCESS().data("orders",orderResponseList).data("totalCount",totalCount);
     }
+
+    public Response deleteOrdersFromUserById(String orderId) {
+        orderRepository.deleteById(orderId);
+        return Response.SUCCESS("20001","删除订单成功！！！");
+    }
 }
