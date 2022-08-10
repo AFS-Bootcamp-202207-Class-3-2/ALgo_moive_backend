@@ -11,11 +11,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderCreateResponse {
-    private String sessionId;
-    private String movieId;
-    private String cinemaId;
-    private String roomId;
-    private String userId;
-    private double price;
-    private Seat[] seats;
+    private String id;
 }

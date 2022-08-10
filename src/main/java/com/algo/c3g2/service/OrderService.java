@@ -99,8 +99,7 @@ public class OrderService {
         sessionRepository.save(session);
         OrderCreateResponse orderCreateResponse = new OrderCreateResponse();
         BeanUtils.copyProperties(orderFromDb, orderCreateResponse);
-        orderCreateResponse.setSeats(seats);
-        return Response.SUCCESS("生成订单信息成功！").data("data", orderCreateResponse);
+        return Response.SUCCESS("生成订单信息成功！").data("order", orderCreateResponse);
     }
 
     public void createQrCode(String orderId, HttpServletResponse response) {
