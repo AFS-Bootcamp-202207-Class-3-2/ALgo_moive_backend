@@ -48,4 +48,11 @@ public class OrderController {
        return orderService.testToBackOrderState(orderId);
     }
 
+    @AuthAccess
+    @GetMapping("/user/{id}")
+    public Response findOrdersByUserId(@PathVariable("id") String userId) {
+        return orderService.findByUserId(userId);
+    }
+
+
 }

@@ -11,6 +11,7 @@ import com.algo.c3g2.repository.*;
 import com.algo.c3g2.utils.QrCodeUtils;
 import com.algo.c3g2.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -162,5 +165,26 @@ public class OrderService {
         order.setStatus("0");
         Order orderFromDb = orderRepository.save(order);
         return Response.SUCCESS().data("order", orderFromDb);
+    }
+
+    public Response findByUserId(String userId) {
+        List<Order> orderList = orderRepository.findAllByUserId(userId);
+        List<OrderResponse> orderResponseList = new ArrayList<>();
+        for (int i = 0; i < orderList.size(); i++) {
+            OrderResponse orderResponse = new OrderResponse();
+            Order order = orderList.get(i);
+            orderResponse.setOrderId(order.getId());
+            orderResponse.setCinemaName(cinemaRepository.findById(order.getCinemaId()).get().getCinemaName());
+            orderResponse.setMovieName(movieRepository.findById(order.getMovieId()).get().getMovieName());
+            orderResponse.setRoomName(roomRepository.findById(order.getRoomId()).get().getRoomName());
+            orderResponse.setPrice(order.getPrice());
+            orderResponse.setStatus(order.getStatus());
+            orderResponse.setSeatInfo(order.getSeatInfo());
+            orderResponse.setMovieCover(movieRepository.findById(order.getMovieId()).get().getCover());
+            orderResponse.setStartTime(sessionRepository.findById(order.getSessionId()).get().getStartTime());
+            orderResponse.setEndTime(sessionRepository.findById(order.getSessionId()).get().getEndTime());
+            orderResponseList.add(orderResponse);
+        }
+        return Response.SUCCESS().data("orders",orderResponseList);
     }
 }
