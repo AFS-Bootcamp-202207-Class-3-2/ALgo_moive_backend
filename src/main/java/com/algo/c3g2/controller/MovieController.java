@@ -4,6 +4,7 @@ import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.mapper.MovieMapper;
 import com.algo.c3g2.entity.Movie;
+import com.algo.c3g2.service.DragonService;
 import com.algo.c3g2.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,9 @@ public class MovieController {
 
     @Autowired
     private MovieMapper movieMapper;
+
+    @Autowired
+    private DragonService dragonService;
 
     @GetMapping
     @AuthAccess
@@ -72,6 +76,12 @@ public class MovieController {
     public Response getFutureMovies(){
         List<Movie>movies = movieService.findFutureMovies();
         return Response.SUCCESS().data("movies",movies);
+    }
+
+    @GetMapping("/{id}/dragon")
+    @AuthAccess
+    public Response getOrderByDragon(@PathVariable("id")String movieId){
+        return dragonService.getOrderByDragon(movieId);
     }
 
 }
