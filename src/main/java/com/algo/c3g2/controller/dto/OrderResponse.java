@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Column;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -17,11 +15,11 @@ public class OrderResponse {
     private double price;
     private String status;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
-    private LocalDateTime startTime;
+    private Date startTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
-    private LocalDateTime endTime;
+    private Date endTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd",timezone="GMT+8")
-    private LocalDateTime screeningDate;
+    private Date screeningDate;
 
     private String movieName;
 
@@ -50,5 +48,8 @@ public class OrderResponse {
     private String userPhone;
 
     private String seatInfo;
+
+    @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
+    private Date createTime;
 
 }

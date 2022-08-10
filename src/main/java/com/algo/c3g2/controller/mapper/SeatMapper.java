@@ -10,7 +10,7 @@ public class SeatMapper {
     public String toSeatInfo (Seat[] seats) {
         List<String> seatInfoList =
                 Arrays.stream(seats)
-                        .map(seat -> String.format("%d排%d座", seat.getRow(), seat.getCol()))
+                        .map(seat -> String.format("%d,%d", seat.getRow(), seat.getCol()))
                         .collect(Collectors.toList());
         return String.join(" ", seatInfoList);
     }

@@ -2,6 +2,7 @@ package com.algo.c3g2.controller;
 
 import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
+import com.algo.c3g2.controller.dto.request.SessionRequest;
 import com.algo.c3g2.controller.mapper.SessionMapper;
 import com.algo.c3g2.entity.Cinema;
 import com.algo.c3g2.entity.Movie;
@@ -42,6 +43,14 @@ public class SessionController {
         sessionList.forEach(item->item.setLanguageVersion(movie.getLanguageVersion()));
         sessionList.forEach(item->item.setRoomName(room.getRoomName()));
 
+        return Response.SUCCESS().data("size", sessionList.size())
+                .data("sessionList", sessionList);
+    }
+
+    @PostMapping
+    @AuthAccess
+    public Response getSessionListByCinemaIdAndMovieIdAndFilterDate(@RequestBody SessionRequest sessionRequest) {
+        List<Session> sessionList = sessionService.findSessionListByCinemaIdAndMovieIdAndFilterDate(sessionRequest);
         return Response.SUCCESS().data("size", sessionList.size())
                 .data("sessionList", sessionList);
     }

@@ -30,7 +30,8 @@ movie_id,
 cinema_id,
 room_id,
 user_id,
-seat_info
+seat_info,
+create_time
 ) values
 (
 '1552837438408221364',
@@ -41,7 +42,8 @@ seat_info
 'ALGOCINEMA1',
 'ALGOROOM1',
 '1552837438408228864',
-'1,2'
+'1,2',
+'2022-07-29 10:04:30'
 );
 
 INSERT INTO t_session(
@@ -89,6 +91,7 @@ INSERT INTO t_movie(
 id,
 movie_name,
 actors,
+language_version,
 movie_desc,
 release_date,
 score,
@@ -96,12 +99,13 @@ cover,
 video,
 hot_spot,
 movie_type,
-boxOffice,
+box_office,
 duration,
 duration_unit
 ) VALUES (
 'ALGOMOVIE1',
 'ALGO',
+'国语3D',
 '第二组全部成员',
 '梦想始于剧本，而终结于电影。',
 '2022-07-29 08:04:30.298000',

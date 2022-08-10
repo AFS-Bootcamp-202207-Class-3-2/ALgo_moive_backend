@@ -4,7 +4,7 @@ import com.algo.c3g2.entity.Seat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -17,7 +17,7 @@ public class SessionSeatsResponse {
     private String cinemaName;
     private String roomName;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
-    private LocalDateTime startTime;
+    private Date startTime;
     private double price;
     private String poster;
     private Seat[][] seats;

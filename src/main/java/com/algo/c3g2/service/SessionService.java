@@ -1,5 +1,6 @@
 package com.algo.c3g2.service;
 
+import com.algo.c3g2.controller.dto.request.SessionRequest;
 import com.algo.c3g2.entity.Cinema;
 import com.algo.c3g2.entity.Movie;
 import com.algo.c3g2.entity.Room;
@@ -58,5 +59,24 @@ public class SessionService {
 
     public Room findRoomByRoomId(String roomId) {
         return roomRepository.findById(roomId).get();
+    }
+
+    public List<Session> findSessionListByCinemaIdAndMovieIdAndFilterDate(SessionRequest sessionRequest) {
+        List<Session> sessionListByCinemaIdAndMovieId = findSessionListByCinemaIdAndMovieId(sessionRequest.getCinemaId(), sessionRequest.getMovieId());
+        String substring = sessionListByCinemaIdAndMovieId.get(0).getStartTime().toString().substring(6, 10);
+        System.out.println(substring);
+
+        List<Session> sessionListFilterBySessionRequest = sessionListByCinemaIdAndMovieId.stream()
+                .filter(item ->
+                        item.getStartTime().toString().substring(6, 10)
+                                .equals(sessionRequest.getFilterDate()))
+                .collect(Collectors.toList());
+        Movie movie = findMovieByMovieId(sessionRequest.getMovieId());
+        sessionListFilterBySessionRequest.forEach(
+                item -> {
+                    item.setLanguageVersion(movie.getLanguageVersion());
+                    item.setRoomName(findRoomByRoomId(item.getRoomId()).getRoomName());
+                });
+        return sessionListFilterBySessionRequest;
     }
 }

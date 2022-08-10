@@ -10,7 +10,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MovieService {
@@ -36,5 +40,15 @@ public class MovieService {
 
     public List<Movie> getMoviesByCinemaId(String cinemaId) {
         return movieRepository.findMoviesByCinemaId(cinemaId);
+    }
+
+    public List<Movie> findNowMovies() {
+        return movieRepository.findAll().stream()
+                .filter(movie -> movie.getReleaseDate().compareTo(new Date()) < 0).collect(Collectors.toList());
+    }
+
+    public List<Movie> findFutureMovies() {
+        return movieRepository.findAll().stream()
+                .filter(movie -> movie.getReleaseDate().compareTo(new Date()) > 0).collect(Collectors.toList());
     }
 }

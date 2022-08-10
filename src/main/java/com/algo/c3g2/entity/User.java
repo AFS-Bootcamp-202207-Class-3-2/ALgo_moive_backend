@@ -9,9 +9,10 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "t_user")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
     @Id
     @GeneratedValue(generator = "snowflake")
@@ -35,11 +37,11 @@ public class User {
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "create_time")
     @CreatedDate
-    private LocalDate createTime;
+    private Date createTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "update_time")
     @LastModifiedDate
-    private LocalDate updateTime;
+    private Date updateTime;
 
     @Transient
     private String token;

@@ -30,6 +30,7 @@ CREATE TABLE IF not EXISTS t_order (
     room_id varchar(100) DEFAULT '-1' COMMENT '电影院ID',
     user_id varchar(100) DEFAULT '-1' COMMENT '角色ID',
     seat_info varchar(100) DEFAULT '-1' COMMENT '座位信息',
+    create_time datetime NULL COMMENT '创建时间',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -70,6 +71,7 @@ create table if not exists t_movie(
     video          varchar(255) default '' comment '电影视频',
     hot_spot       int default 0 comment '热点',
     movie_type     varchar(255) null comment '电影类型',
+    language_version     varchar(255) null comment '电影语言',
     box_office     double default 0.0 comment '票房',
     duration       double null comment '持续时间',
     duration_unit  varchar(255) default 'minute' comment '持续时间单位'

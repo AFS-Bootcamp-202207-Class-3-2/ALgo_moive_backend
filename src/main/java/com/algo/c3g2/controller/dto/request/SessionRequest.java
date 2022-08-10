@@ -1,6 +1,5 @@
-package com.algo.c3g2.controller.dto.response;
+package com.algo.c3g2.controller.dto.request;
 
-import com.algo.c3g2.entity.Seat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +9,9 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderCreateResponse {
-    private String id;
+public class SessionRequest {
+    private String cinemaId ;
+    private String movieId ;
+    private String filterDate;
+
 }
