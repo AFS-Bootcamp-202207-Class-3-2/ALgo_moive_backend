@@ -11,7 +11,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -35,11 +35,11 @@ public class User {
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "create_time")
     @CreatedDate
-    private LocalDate createTime;
+    private Date createTime;
     @JsonFormat(shape= JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:ss:mm",timezone="GMT+8")
     @Column(name = "update_time")
     @LastModifiedDate
-    private LocalDate updateTime;
+    private Date updateTime;
 
     @Transient
     private String token;
