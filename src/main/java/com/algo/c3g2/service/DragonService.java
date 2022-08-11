@@ -39,7 +39,9 @@ public class DragonService {
                     .findFirst()
                     .orElseThrow(SessionExistException::new);
             Seat[] seats = findFirstEmptySeats(existSession, number);
-            OrderCreateRequest orderCreateRequest = new OrderCreateRequest(existSession.getId(),existSession.getPrice(),seats);
+            String priceString = String.format("%.2f", number * existSession.getPrice());
+            double price = Double.parseDouble(priceString);
+            OrderCreateRequest orderCreateRequest = new OrderCreateRequest(existSession.getId(), price, seats);
             return orderService.generateOrder(orderCreateRequest);
         }
         return Response.FAIL("所有场次无空余座位！");
