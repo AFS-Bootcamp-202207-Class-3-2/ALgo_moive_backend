@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/sessions")
-@CrossOrigin
 public class SessionController {
     @Autowired
     SessionService sessionService;
