@@ -201,4 +201,29 @@ public class OrderService {
         orderRepository.deleteById(orderId);
         return Response.SUCCESS("20001","删除订单成功！！！");
     }
+
+    public void updateFinishQrCodeImage(String orderId, HttpServletResponse response) {
+        HttpServletRequest request = getRequest();
+        String servletPath = request.getServletPath();
+        String originDomain = request.getRequestURL().toString().replace(servletPath, "");
+        String content = originDomain +  "/order/update/finish/" + orderId;
+        log.info("content ==> " + content);
+        byte[] result = QrCodeUtils.encodeQrCode(content);
+        response.setContentType(QrCodeUtils.RESPONSE_CONTENT_TYPE);
+        try {
+            ServletOutputStream outputStream = response.getOutputStream();
+            outputStream.write(result);
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Response updateOrderFinish(String orderId) {
+        Order orderFromDb = orderRepository.findById(orderId).orElseThrow(OrderNoExistException::new);
+        orderFromDb.setStatus("2");
+        Order saveOrder = orderRepository.save(orderFromDb);
+        return Response.SUCCESS("2022", "成功观影!!!").data("data", saveOrder);
+    }
 }

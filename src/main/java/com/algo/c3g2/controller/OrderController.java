@@ -43,6 +43,24 @@ public class OrderController {
     }
 
     @AuthAccess
+    @GetMapping("/qr-code/finish/{orderId}")
+    public void getUpdateFinishQrCodeImage(HttpServletResponse response,
+                                           @PathVariable("orderId") String orderId) {
+        orderService.updateFinishQrCodeImage(orderId,response);
+    }
+
+    /**
+     * 二维码回调函数
+     * 更新订单状态为 2
+     * @param orderId
+     */
+    @AuthAccess
+    @GetMapping("/update/finish/{orderId}")
+    public Response updateOrderFinish(@PathVariable("orderId") String orderId) {
+        return orderService.updateOrderFinish(orderId);
+    }
+
+    @AuthAccess
     @GetMapping("/test/{orderId}")
     public Response testToBackOrderState(@PathVariable("orderId") String orderId) {
        return orderService.testToBackOrderState(orderId);
