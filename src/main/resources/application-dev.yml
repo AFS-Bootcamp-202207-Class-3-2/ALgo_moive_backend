@@ -20,7 +20,7 @@ spring:
 
   flyway:
 #    enabled: false
-    baseline-on-migrate: true
+    baseline-on-migrate: true  
 
 
 
