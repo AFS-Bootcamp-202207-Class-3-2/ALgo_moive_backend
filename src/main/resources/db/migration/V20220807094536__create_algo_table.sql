@@ -39,7 +39,8 @@ create table if not exists t_movie(
     language_version     varchar(255) null,
     box_office     float  default 0.0,
     duration       float null ,
-    duration_unit  varchar(255) null
+    duration_unit  varchar(255) null,
+    pictures       text null
 );
 
 CREATE TABLE IF not EXISTS t_user (

@@ -53,6 +53,8 @@ public class Movie {
 
     private String durationUnit = DefaultConstants.DEFAULT_DURATION_UNIT;
 
+    private String pictures;
+
     public Movie(String id, String movieName, String actors, String movieDesc) {
         this.id = id;
         this.movieName = movieName;
