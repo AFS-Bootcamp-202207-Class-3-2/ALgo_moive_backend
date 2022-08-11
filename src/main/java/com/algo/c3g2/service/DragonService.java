@@ -66,9 +66,13 @@ public class DragonService {
 
     private Seat[] findFirstEmptySeats(Session session, Integer number){
         int index = checkEmptySeatsInCinema(session, number);
+        int sessionSize = (int) Math.sqrt(session.getSeatsInfo().length());
         Seat[] seats = new Seat[number];
         for(int i = 0 ; i < number; i++) {
-            seats[i] = new Seat(0, index + i, 0, 0);
+            int newIndex = index + i;
+            int row = (newIndex / sessionSize) + 1;
+            int col = (newIndex % sessionSize) + 1;
+            seats[i] = new Seat(1, newIndex, row, col);
         }
         return seats;
     }
