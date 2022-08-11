@@ -28,17 +28,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX +"/static/");
     }
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                //是否发送Cookie
-                .allowCredentials(true)
-                //放行哪些原始域
-                .allowedOrigins("*")
-                .allowedMethods(new String[]{"GET", "POST", "PUT", "DELETE"})
-                .allowedHeaders("*")
-                .exposedHeaders("*");
-    }
 
 
 //    @Override
