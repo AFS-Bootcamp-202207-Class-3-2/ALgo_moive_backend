@@ -12,4 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OrderCreateResponse {
     private String id;
+    private double price;
 }
