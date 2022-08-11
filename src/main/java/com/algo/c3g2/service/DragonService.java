@@ -25,7 +25,7 @@ public class DragonService {
     @Autowired
     OrderService orderService;
 
-    public Response getOrderByDragon(String movieId) {
+    public Response getOrderByDragon(String movieId, Integer number) {
         List<Session> sessionList = sessionRepository.findAllByMovieId(movieId);
         Date now = new Date();
         //全部小于当前时间的场次
@@ -35,22 +35,39 @@ public class DragonService {
         if(!ObjectUtil.isEmpty(sessions)){
             //找到有座位的场次
             Session existSession = sessions.stream()
-                    .filter(session -> session.getSeatsInfo().indexOf('1')!=-1)
+                    .filter(session -> checkEmptySeatsInCinema(session, number) != -1)
                     .findFirst()
                     .orElseThrow(SessionExistException::new);
-            Integer firstEmptySeat = findFirstEmptySeat(existSession);
-            Seat[] seats = {new Seat(0,firstEmptySeat,0,0)};
+            Seat[] seats = findFirstEmptySeats(existSession, number);
             OrderCreateRequest orderCreateRequest = new OrderCreateRequest(existSession.getId(),existSession.getPrice(),seats);
             return orderService.generateOrder(orderCreateRequest);
         }
         return Response.FAIL("所有场次无空余座位！");
     }
 
-    private Integer findFirstEmptySeat(Session session){
-        int index = session.getSeatsInfo().indexOf('1');
-        return index;
+    private int checkEmptySeatsInCinema(Session session, Integer number){
+        String seatsInfo = session.getSeatsInfo();
+        int sessionSize = (int) Math.sqrt(seatsInfo.length());
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i = 0; i< number; i++) {
+            stringBuffer.append('1');
+        }
+        String needSeats = stringBuffer.toString();
+        for (int i = 0; i < sessionSize; i++) {
+            int index = seatsInfo.substring(i * sessionSize, (i + 1) * sessionSize).indexOf(needSeats);
+            if(index != -1){
+                return i * sessionSize + index;
+            }
+        }
+        return -1;
     }
 
-
-
+    private Seat[] findFirstEmptySeats(Session session, Integer number){
+        int index = checkEmptySeatsInCinema(session, number);
+        Seat[] seats = new Seat[number];
+        for(int i = 0 ; i < number; i++) {
+            seats[i] = new Seat(0, index + i, 0, 0);
+        }
+        return seats;
+    }
 }

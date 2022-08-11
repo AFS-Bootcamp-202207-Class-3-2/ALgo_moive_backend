@@ -9,6 +9,7 @@ import com.algo.c3g2.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,10 +79,9 @@ public class MovieController {
         return Response.SUCCESS().data("movies",movies);
     }
 
-    @GetMapping("/{id}/dragon")
+    @PostMapping("/{id}/onestop")
     @AuthAccess
-    public Response getOrderByDragon(@PathVariable("id")String movieId){
-        return dragonService.getOrderByDragon(movieId);
+    public Response getOrderByOneStop(@PathVariable("id")String movieId, @RequestBody Integer number){
+        return dragonService.getOrderByDragon(movieId, number);
     }
-
 }
