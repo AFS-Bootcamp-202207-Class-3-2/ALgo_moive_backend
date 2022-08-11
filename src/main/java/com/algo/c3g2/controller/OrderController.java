@@ -79,5 +79,15 @@ public class OrderController {
         return orderService.deleteOrdersFromUserById(orderId);
     }
 
+    @DeleteMapping("/user/refund/d/{orderId}")
+    public Response refundDeleteOrdersFromUserById(@PathVariable("orderId") String orderId) {
+        return orderService.refundDeleteOrdersFromUserById(orderId);
+    }
+
+    @PutMapping("/refund/{orderId}")
+    public Response refundUnlockSeats(@PathVariable("orderId") String orderId) {
+        return orderService.refundUnlockSeats(orderId);
+    }
+
 
 }

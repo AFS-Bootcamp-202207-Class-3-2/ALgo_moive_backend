@@ -198,11 +198,17 @@ public class OrderService {
         return Response.SUCCESS().data("orders",orderResponseList).data("totalCount",totalCount);
     }
 
+    /**
+     *
+     * 删除订单
+     * @param orderId
+     * @return
+     */
     public Response deleteOrdersFromUserById(String orderId) {
         Order order = orderRepository.findById(orderId).get();
         String status = order.getStatus();
-        
-        if(status.equals("0") || status.equals("1")) {
+
+        if(status.equals("0")) {
             String seatInfo = order.getSeatInfo();
             String sessionId = order.getSessionId();
             Session session = sessionRepository.findById(sessionId).get();
@@ -254,4 +260,31 @@ public class OrderService {
 
         return updateSeatInfo;
     }
+
+    public Response refundUnlockSeats(String orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        String status = order.getStatus();
+
+        if(status.equals("1")) {
+            String seatInfo = order.getSeatInfo();
+            String sessionId = order.getSessionId();
+            Session session = sessionRepository.findById(sessionId).get();
+            int sessionSize = (int) Math.sqrt(session.getSeatsInfo().length());
+            String updateSeatInfo = revertSeatState(session, seatInfo, sessionSize);
+            session.setSeatsInfo(updateSeatInfo);
+            sessionRepository.save(session);
+        }else {
+            return Response.FAIL("无法退票").data("order", order);
+        }
+        order.setStatus("3");
+        Order saveOrder = orderRepository.save(order);
+        return Response.SUCCESS("20002","退票成功！！！").data("order",saveOrder);
+    }
+
+    public Response refundDeleteOrdersFromUserById(String orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(OrderNoExistException::new);
+        orderRepository.delete(order);
+        return Response.SUCCESS("2022", "删除退票记录成功").data("order", order);
+    }
+
 }
