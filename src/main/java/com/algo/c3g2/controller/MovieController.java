@@ -79,9 +79,9 @@ public class MovieController {
         return Response.SUCCESS().data("movies",movies);
     }
 
-    @PostMapping("/{id}/onestop")
+    @PostMapping("/{id}/onestop/{num}")
     @AuthAccess
-    public Response getOrderByOneStop(@PathVariable("id")String movieId, @RequestBody Integer number){
+    public Response getOrderByOneStop(@PathVariable("id")String movieId, @PathVariable("num") Integer number){
         return dragonService.getOrderByDragon(movieId, number);
     }
 }
