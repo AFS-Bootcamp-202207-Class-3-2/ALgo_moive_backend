@@ -13,5 +13,5 @@ public class Seat {
     private int state;
     private int index;
     private int row;
-    private int col;
+    private int col; 
 }

@@ -25,6 +25,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -197,8 +198,93 @@ public class OrderService {
         return Response.SUCCESS().data("orders",orderResponseList).data("totalCount",totalCount);
     }
 
+    /**
+     *
+     * 删除订单
+     * @param orderId
+     * @return
+     */
     public Response deleteOrdersFromUserById(String orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        String status = order.getStatus();
+
+        if(status.equals("0")) {
+            String seatInfo = order.getSeatInfo();
+            String sessionId = order.getSessionId();
+            Session session = sessionRepository.findById(sessionId).get();
+            int sessionSize = (int) Math.sqrt(session.getSeatsInfo().length());
+            String updateSeatInfo = revertSeatState(session, seatInfo, sessionSize);
+            session.setSeatsInfo(updateSeatInfo);
+            sessionRepository.save(session);
+        }
+        
         orderRepository.deleteById(orderId);
         return Response.SUCCESS("20001","删除订单成功！！！");
     }
+
+    public void updateFinishQrCodeImage(String orderId, HttpServletResponse response) {
+        HttpServletRequest request = getRequest();
+        String servletPath = request.getServletPath();
+        String originDomain = request.getRequestURL().toString().replace(servletPath, "");
+        String content = originDomain +  "/order/update/finish/" + orderId;
+        log.info("content ==> " + content);
+        byte[] result = QrCodeUtils.encodeQrCode(content);
+        response.setContentType(QrCodeUtils.RESPONSE_CONTENT_TYPE);
+        try {
+            ServletOutputStream outputStream = response.getOutputStream();
+            outputStream.write(result);
+            outputStream.flush();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Response updateOrderFinish(String orderId) {
+        Order orderFromDb = orderRepository.findById(orderId).orElseThrow(OrderNoExistException::new);
+        orderFromDb.setStatus("2");
+        Order saveOrder = orderRepository.save(orderFromDb);
+        return Response.SUCCESS("2022", "成功观影!!!").data("data", saveOrder);
+    }
+    public String revertSeatState(Session session, String seatInfo, int sessionSize) {
+        String updateSeatInfo = session.getSeatsInfo();
+
+        List<String> seatList = Arrays.asList(seatInfo.split(" "));
+        for(String seat : seatList) {
+            String[] seatNum = seat.split(",");
+            int row = Integer.parseInt(seatNum[0]) - 1;
+            int col = Integer.parseInt(seatNum[1]) - 1;
+            int index = row * sessionSize + col;
+            updateSeatInfo = updateSeatInfo.substring(0, index) + '1' + updateSeatInfo.substring(index + 1);
+        }
+
+        return updateSeatInfo;
+    }
+
+    public Response refundUnlockSeats(String orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        String status = order.getStatus();
+
+        if(status.equals("1")) {
+            String seatInfo = order.getSeatInfo();
+            String sessionId = order.getSessionId();
+            Session session = sessionRepository.findById(sessionId).get();
+            int sessionSize = (int) Math.sqrt(session.getSeatsInfo().length());
+            String updateSeatInfo = revertSeatState(session, seatInfo, sessionSize);
+            session.setSeatsInfo(updateSeatInfo);
+            sessionRepository.save(session);
+        }else {
+            return Response.FAIL("无法退票").data("order", order);
+        }
+        order.setStatus("3");
+        Order saveOrder = orderRepository.save(order);
+        return Response.SUCCESS("20002","退票成功！！！").data("order",saveOrder);
+    }
+
+    public Response refundDeleteOrdersFromUserById(String orderId) {
+        Order order = orderRepository.findById(orderId).orElseThrow(OrderNoExistException::new);
+        orderRepository.delete(order);
+        return Response.SUCCESS("2022", "删除退票记录成功").data("order", order);
+    }
+
 }
