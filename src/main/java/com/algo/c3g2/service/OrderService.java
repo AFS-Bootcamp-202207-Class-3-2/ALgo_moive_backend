@@ -25,6 +25,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -198,7 +199,35 @@ public class OrderService {
     }
 
     public Response deleteOrdersFromUserById(String orderId) {
+        Order order = orderRepository.findById(orderId).get();
+        String status = order.getStatus();
+        
+        if(status.equals("0") || status.equals("1")) {
+            String seatInfo = order.getSeatInfo();
+            String sessionId = order.getSessionId();
+            Session session = sessionRepository.findById(sessionId).get();
+            int sessionSize = (int) Math.sqrt(session.getSeatsInfo().length());
+            String updateSeatInfo = revertSeatState(session, seatInfo, sessionSize);
+            session.setSeatsInfo(updateSeatInfo);
+            sessionRepository.save(session);
+        }
+        
         orderRepository.deleteById(orderId);
         return Response.SUCCESS("20001","删除订单成功！！！");
+    }
+    
+    public String revertSeatState(Session session, String seatInfo, int sessionSize) {
+        String updateSeatInfo = session.getSeatsInfo();
+
+        List<String> seatList = Arrays.asList(seatInfo.split(" "));
+        for(String seat : seatList) {
+            String[] seatNum = seat.split(",");
+            int row = Integer.parseInt(seatNum[0]) - 1;
+            int col = Integer.parseInt(seatNum[1]) - 1;
+            int index = row * sessionSize + col;
+            updateSeatInfo = updateSeatInfo.substring(0, index) + '1' + updateSeatInfo.substring(index + 1);
+        }
+
+        return updateSeatInfo;
     }
 }
