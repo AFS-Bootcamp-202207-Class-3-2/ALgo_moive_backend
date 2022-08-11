@@ -31,10 +31,23 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                //是否发送Cookie
                 .allowCredentials(true)
+                //放行哪些原始域
+                .allowedOrigins("*")
+                .allowedMethods(new String[]{"GET", "POST", "PUT", "DELETE"})
                 .allowedHeaders("*")
-                .maxAge(3600);
+                .exposedHeaders("*");
     }
+
+
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedOriginPatterns("*")
+//                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+//                .allowCredentials(true)
+//                .allowedHeaders("*")
+//                .maxAge(3600);
+//    }
 }
