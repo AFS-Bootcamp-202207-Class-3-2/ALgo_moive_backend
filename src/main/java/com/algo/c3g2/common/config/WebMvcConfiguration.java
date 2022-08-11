@@ -32,7 +32,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("https://algo-moive-backed.herokuapp.com")
+                .allowedOriginPatterns("*")
                 .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
                 .allowCredentials(true)
                 .allowedHeaders("*")
