@@ -3,6 +3,7 @@ package com.algo.c3g2.controller;
 import com.algo.c3g2.common.AuthAccess;
 import com.algo.c3g2.common.Response;
 import com.algo.c3g2.controller.dto.UserRequest;
+import com.algo.c3g2.controller.dto.request.UserUpdateRequest;
 import com.algo.c3g2.controller.mapper.UserMapper;
 import com.algo.c3g2.entity.User;
 import com.algo.c3g2.exception.UserExistException;
@@ -32,5 +33,10 @@ public class UserController {
 
     public Boolean isExistUser(String username) {
         return userService.isExistUser(username);
+    }
+    @PutMapping("/{id}")
+    @AuthAccess
+    public Response updateUser(@PathVariable("id") String id,@RequestBody UserUpdateRequest userUpdateRequest){
+      return userService.updateUser(id, userMapper.toUpdateEntity(userUpdateRequest));
     }
 }
