@@ -40,4 +40,19 @@ public class UserService {
     public User findById(String id) {
         return userRepository.findById(id).orElseThrow(UserNotExistException::new);
     }
+
+    public Response updateUser(String id, User user) {
+        User userById = findById(id);
+        if(user.getNickname() != null){
+            userById.setNickname(user.getNickname());
+        }
+        if(user.getPhone() != null){
+            userById.setPhone(user.getPhone());
+        }
+        if(user.getSign() != null){
+            userById.setSign(user.getSign());
+        }
+        User updatedUser = userRepository.save(userById);
+        return Response.SUCCESS().data("user",updatedUser);
+    }
 }
